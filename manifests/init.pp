@@ -55,5 +55,6 @@ exec { "create v3 user":
 }
 service { 'snmpd':
   ensure => 'running',
+  enable => true,
 }
 }
