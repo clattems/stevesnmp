@@ -39,8 +39,17 @@ class stevesnmp {
 package { 'net-snmp':
   ensure => installed,
 }
+package { 'net-snmp-utils':
+  ensure => installed,
+}
+package { 'net-snmp-libs':
+  ensure => installed,
+}
+package { 'net-snmp-devel':
+  ensure => installed,
+}
 exec { "create v3 user":
-  command => "/usr/bin/net-snmp-create-v3-user -ro -A Heartland -a MD5 -x DES Heartland",
+  command => "/usr/bin/net-snmp-create-v3-user -ro -A Heartland -X Heartland -a MD5 -x DES Heartland",
   path	  => [ "/usr/bin/net-snmp-create-v3-user" ],
   unless  => "/bin/grep Heartland /etc/snmp/snmpd.conf"
 }
